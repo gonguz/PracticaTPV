@@ -16,7 +16,7 @@ TexturasSDL::~TexturasSDL()
 {
 }
 
-bool TexturasSDL::load(SDL_Renderer* pRender,string const nomArchivo) {
+bool TexturasSDL::load(SDL_Renderer* pRender,string const& nomArchivo) {
 	SDL_Surface* pTempSurface = nullptr;
 	bool success = true;
 

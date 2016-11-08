@@ -96,23 +96,32 @@ void JuegoPG::closeSDL(SDL_Window* &pWin, SDL_Renderer* &pRender) {
 }
 
 bool JuegoPG::initGlobos() {
-	if (textures[0]->load(pRender, "..\\bmps\\Balloon.png")) {
-		textures.emplace_back(new TexturasSDL());
-	}
-	globos.emplace_back(new GlobosPG(textures[0], 0, 30));
-	return true;
+	bool succes = true;
+	textures[0] = new TexturasSDL();
+	textures[0]->load(pRender, "Balloon.png");
+	textures[1] = new TexturasSDL();
+	textures[1]->load(pRender, "background.png");
+	rect = new SDL_Rect();
+	rect->h = HEIGHT;
+	rect->w = WIDTH;
+	rect->x = 0;
+	rect->y = 0;
+ 	for (int i = 0; i < globos.size(); i++)
+		globos.emplace_back(new GlobosPG(textures[0], rand() % 500, rand() % 500));
+	return succes;
 }
 
 void JuegoPG::freeGlobos(vector<GlobosPG*> globos) {
 	for (size_t i = 0; i < globos.size(); ++i) {
 		globos[i] = nullptr;
 	} 
+	textures[0] = nullptr;
+	textures[1] = nullptr;
 }
 
 void JuegoPG::render() const {
-	for (size_t i = 0; i < globos.size(); ++i) {
-		globos[i]->draw(pRender);
-	}
+	SDL_RenderClear(pRender);
+	textures[1]->draw(pRender,rect);
 }
 
 void JuegoPG:: onClick(int pmx, int pmy) {

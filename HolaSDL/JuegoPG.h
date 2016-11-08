@@ -18,6 +18,7 @@ public:
 private:
 	SDL_Window * pWin;
 	SDL_Renderer * pRender;
+	SDL_Rect* rect;
 	SDL_Color color;
 	vector<GlobosPG*> globos;
 	vector<TexturasSDL*> textures;

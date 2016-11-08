@@ -10,7 +10,7 @@ class TexturasSDL
 public:
 	TexturasSDL();
 	~TexturasSDL();
-	bool load(SDL_Renderer* pRender, string const nomArchivo);
+	bool load(SDL_Renderer* pRender, string const& nomArchivo);
 	void draw(SDL_Renderer* pRender, SDL_Rect const& rect);
 
 private: 
